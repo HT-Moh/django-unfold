@@ -30,19 +30,19 @@ from .exceptions import UnfoldException
 
 class UnfoldAdminTextInputWidget(AdminTextInputWidget):
     def __init__(self, attrs: Optional[Dict[str, Any]] = None) -> None:
-        super().__init__(attrs={"class": " ".join(get_config("INPUT_CLASSES")), **(attrs or {})})
+        super().__init__(attrs={"class": " ".join(get_config()["INPUT_CLASSES"]), **(attrs or {})})
 
 
 class UnfoldAdminColorInputWidget(AdminTextInputWidget):
     def __init__(self, attrs: Optional[Dict[str, Any]] = None) -> None:
         super().__init__(
-            attrs={"type": "color", "class": " ".join(get_config("COLOR_CLASSES")), **(attrs or {})}
+            attrs={"type": "color", "class": " ".join(get_config()["COLOR_CLASSES"]), **(attrs or {})}
         )
 
 
 class UnfoldAdminUUIDInputWidget(AdminUUIDInputWidget):
     def __init__(self, attrs: Optional[Dict[str, Any]] = None) -> None:
-        super().__init__(attrs={"class": " ".join(get_config("INPUT_CLASSES")), **(attrs or {})})
+        super().__init__(attrs={"class": " ".join(get_config()["INPUT_CLASSES"]), **(attrs or {})})
 
 
 class UnfoldAdminIntegerRangeWidget(MultiWidget):
@@ -52,7 +52,7 @@ class UnfoldAdminIntegerRangeWidget(MultiWidget):
         if attrs is None:
             attrs = {}
 
-        attrs["class"] = " ".join(get_config("INPUT_CLASSES"))
+        attrs["class"] = " ".join(get_config()["INPUT_CLASSES"])
 
         _widgets = (NumberInput(attrs=attrs), NumberInput(attrs=attrs))
 
@@ -66,14 +66,14 @@ class UnfoldAdminIntegerRangeWidget(MultiWidget):
 
 class UnfoldAdminEmailInputWidget(AdminEmailInputWidget):
     def __init__(self, attrs: Optional[Dict[str, Any]] = None) -> None:
-        super().__init__(attrs={"class": " ".join(get_config("INPUT_CLASSES")), **(attrs or {})})
+        super().__init__(attrs={"class": " ".join(get_config()["INPUT_CLASSES"]), **(attrs or {})})
 
 
 class FileFieldMixin:
     def get_context(self, name, value, attrs):
         widget = super().get_context(name, value, attrs)
         widget["widget"].update(
-            {"class": " ".join([*get_config("CHECKBOX_CLASSES"), *["form-check-input"]])}
+            {"class": " ".join([*get_config()["CHECKBOX_CLASSES"], *["form-check-input"]])}
         )
         return widget
 
@@ -95,7 +95,7 @@ class UnfoldAdminDateWidget(AdminDateWidget):
         self, attrs: Optional[Dict[str, Any]] = None, format: Optional[str] = None
     ) -> None:
         attrs = {
-            "class": "vDateField " + " ".join(get_config("INPUT_CLASSES")),
+            "class": "vDateField " + " ".join(get_config()["INPUT_CLASSES"]),
             "size": "10",
             **(attrs or {}),
         }
@@ -109,7 +109,7 @@ class UnfoldAdminSingleDateWidget(AdminDateWidget):
         self, attrs: Optional[Dict[str, Any]] = None, format: Optional[str] = None
     ) -> None:
         attrs = {
-            "class": "vDateField " + " ".join(get_config("INPUT_CLASSES")),
+            "class": "vDateField " + " ".join(get_config()["INPUT_CLASSES"]),
             "size": "10",
             **(attrs or {}),
         }
@@ -121,7 +121,7 @@ class UnfoldAdminTimeWidget(AdminTimeWidget):
         self, attrs: Optional[Dict[str, Any]] = None, format: Optional[str] = None
     ) -> None:
         attrs = {
-            "class": "vTimeField " + " ".join(get_config("INPUT_CLASSES")),
+            "class": "vTimeField " + " ".join(get_config()["INPUT_CLASSES"]),
             "size": "8",
             **(attrs or {}),
         }
@@ -135,7 +135,7 @@ class UnfoldAdminSingleTimeWidget(AdminTimeWidget):
         self, attrs: Optional[Dict[str, Any]] = None, format: Optional[str] = None
     ) -> None:
         attrs = {
-            "class": "vTimeField " + " ".join(get_config("INPUT_CLASSES")),
+            "class": "vTimeField " + " ".join(get_config()["INPUT_CLASSES"]),
             "size": "8",
             **(attrs or {}),
         }
@@ -153,9 +153,9 @@ class UnfoldAdminTextareaWidget(AdminTextareaWidget):
         super().__init__(
             attrs={
                 "class": "vLargeTextField "
-                + " ".join(get_config("TEXTAREA_CLASSES"))
+                + " ".join(get_config()["TEXTAREA_CLASSES"])
                 + " "
-                + " ".join(get_config("TEXTAREA_EXPANDABLE_CLASSES")),
+                + " ".join(get_config()["TEXTAREA_EXPANDABLE_CLASSES"]),
                 **(attrs or {}),
             }
         )
@@ -207,17 +207,17 @@ class UnfoldAdminSplitDateTimeVerticalWidget(AdminSplitDateTime):
 
 class UnfoldAdminIntegerFieldWidget(AdminIntegerFieldWidget):
     def __init__(self, attrs: Optional[Dict[str, Any]] = None) -> None:
-        super().__init__(attrs={"class": " ".join(get_config("INPUT_CLASSES")), **(attrs or {})})
+        super().__init__(attrs={"class": " ".join(get_config()["INPUT_CLASSES"]), **(attrs or {})})
 
 
 class UnfoldAdminDecimalFieldWidget(AdminIntegerFieldWidget):
     def __init__(self, attrs: Optional[Dict[str, Any]] = None) -> None:
-        super().__init__(attrs={"class": " ".join(get_config("INPUT_CLASSES")), **(attrs or {})})
+        super().__init__(attrs={"class": " ".join(get_config()["INPUT_CLASSES"]), **(attrs or {})})
 
 
 class UnfoldAdminBigIntegerFieldWidget(AdminBigIntegerFieldWidget):
     def __init__(self, attrs: Optional[Dict[str, Any]] = None) -> None:
-        super().__init__(attrs={"class": " ".join(get_config("INPUT_CLASSES")), **(attrs or {})})
+        super().__init__(attrs={"class": " ".join(get_config()["INPUT_CLASSES"]), **(attrs or {})})
 
 
 class UnfoldAdminNullBooleanSelectWidget(NullBooleanSelect):
@@ -229,7 +229,7 @@ class UnfoldAdminSelect(Select):
         if attrs is None:
             attrs = {}
 
-        attrs["class"] = " ".join(get_config("SELECT_CLASSES"))
+        attrs["class"] = " ".join(get_config()["SELECT_CLASSES"])
         super().__init__(attrs, choices)
 
 
@@ -243,7 +243,7 @@ class UnfoldAdminRadioSelectWidget(AdminRadioSelect):
             radio_style = VERTICAL
 
         self.radio_style = radio_style
-        self.attrs = {"class": " ".join(get_config("RADIO_CLASSES"))}
+        self.attrs = {"class": " ".join(get_config()["RADIO_CLASSES"])}
 
     def get_context(self, *args, **kwargs) -> Dict[str, Any]:
         context = super().get_context(*args, **kwargs)
@@ -281,7 +281,7 @@ class UnfoldBooleanWidget(CheckboxInput):
         return super().__init__(
             {
                 **(attrs or {}),
-                "class": " ".join(get_config("CHECKBOX_CLASSES") + [attrs.get("class", "")]),
+                "class": " ".join(get_config()["CHECKBOX_CLASSES"] + [attrs.get("class", "")]),
             },
             check_test,
         )
@@ -292,5 +292,5 @@ class UnfoldBooleanSwitchWidget(CheckboxInput):
         self, attrs: Optional[Dict[str, Any]] = None, check_test: Callable = None
     ) -> None:
         return super().__init__(
-            attrs={"class": " ".join(get_config("SWITCH_CLASSES")), **(attrs or {})}, check_test=None
+            attrs={"class": " ".join(get_config()["SWITCH_CLASSES"]), **(attrs or {})}, check_test=None
         )

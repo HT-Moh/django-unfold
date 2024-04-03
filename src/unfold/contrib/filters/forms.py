@@ -13,7 +13,7 @@ class SingleNumericForm(forms.Form):
             label="",
             required=False,
             widget=forms.NumberInput(
-                attrs={"placeholder": _("Value"), "class": " ".join(get_config("INPUT_CLASSES"))}
+                attrs={"placeholder": _("Value"), "class": " ".join(get_config()["INPUT_CLASSES"])}
             ),
         )
 
@@ -29,14 +29,14 @@ class RangeNumericForm(forms.Form):
             label="",
             required=False,
             widget=forms.NumberInput(
-                attrs={"placeholder": _("From"), "class": " ".join(get_config("INPUT_CLASSES"))}
+                attrs={"placeholder": _("From"), "class": " ".join(get_config()["INPUT_CLASSES"])}
             ),
         )
         self.fields[self.name + "_to"] = forms.FloatField(
             label="",
             required=False,
             widget=forms.NumberInput(
-                attrs={"placeholder": _("To"), "class": " ".join(get_config("INPUT_CLASSES"))}
+                attrs={"placeholder": _("To"), "class": " ".join(get_config()["INPUT_CLASSES"])}
             ),
         )
 
@@ -70,7 +70,7 @@ class RangeDateForm(forms.Form):
             widget=forms.DateInput(
                 attrs={
                     "placeholder": _("From"),
-                    "class": "vCustomDateField " + " ".join(get_config("INPUT_CLASSES")),
+                    "class": "vCustomDateField " + " ".join(get_config()["INPUT_CLASSES"]),
                 }
             ),
         )
@@ -80,7 +80,7 @@ class RangeDateForm(forms.Form):
             widget=forms.DateInput(
                 attrs={
                     "placeholder": _("To"),
-                    "class": "vCustomDateField " + " ".join(get_config("INPUT_CLASSES")),
+                    "class": "vCustomDateField " + " ".join(get_config()["INPUT_CLASSES"]),
                 }
             ),
         )
@@ -106,12 +106,12 @@ class RangeDateTimeForm(forms.Form):
                 date_label="",
                 date_attrs={
                     "placeholder": _("Date from"),
-                    "class": "vCustomDateField " + " ".join(get_config("INPUT_CLASSES")),
+                    "class": "vCustomDateField " + " ".join(get_config()["INPUT_CLASSES"]),
                 },
                 time_label="",
                 time_attrs={
                     "placeholder": _("Time"),
-                    "class": "vCustomTimeField " + " ".join(get_config("INPUT_CLASSES")),
+                    "class": "vCustomTimeField " + " ".join(get_config()["INPUT_CLASSES"]),
                 },
             ),
         )
@@ -122,12 +122,12 @@ class RangeDateTimeForm(forms.Form):
                 date_label="",
                 date_attrs={
                     "placeholder": _("Date to"),
-                    "class": "vCustomDateField " + " ".join(get_config("INPUT_CLASSES")),
+                    "class": "vCustomDateField " + " ".join(get_config()["INPUT_CLASSES"]),
                 },
                 time_label="",
                 time_attrs={
                     "placeholder": _("Time"),
-                    "class": "vCustomTimeField " + " ".join(get_config("INPUT_CLASSES")),
+                    "class": "vCustomTimeField " + " ".join(get_config()["INPUT_CLASSES"]),
                 },
             ),
         )

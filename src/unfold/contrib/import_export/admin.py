@@ -12,7 +12,7 @@ def export_action_form_factory(formats):
             choices=formats,
             required=False,
             widget=forms.Select(
-                {"class": " ".join([*get_config("SELECT_CLASSES"), "ml-3", "!w-auto", "lg:!w-40"])}
+                {"class": " ".join([*get_config()["SELECT_CLASSES"], "ml-3", "!w-auto", "lg:!w-40"])}
             ),
         )
 

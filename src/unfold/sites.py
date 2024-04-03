@@ -53,8 +53,8 @@ class UnfoldAdminSite(AdminSite):
         context.update(
             {
                 "form_classes": {
-                    "text_input": get_config("INPUT_CLASSES"),
-                    "checkbox": get_config("CHECKBOX_CLASSES"),
+                    "text_input": get_config()["INPUT_CLASSES"],
+                    "checkbox": get_config()["CHECKBOX_CLASSES"],
                 },
                 "site_logo": self._get_mode_images(
                     get_config(self.settings_name)["SITE_LOGO"], request

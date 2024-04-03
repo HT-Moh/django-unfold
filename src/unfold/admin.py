@@ -149,9 +149,9 @@ class UnfoldAdminField(helpers.AdminField):
         contents = conditional_escape(self.field.label)
 
         if self.is_checkbox:
-            classes.append(" ".join(get_config("CHECKBOX_LABEL_CLASSES")))
+            classes.append(" ".join(get_config()["CHECKBOX_LABEL_CLASSES"]))
         else:
-            classes.append(" ".join(get_config("LABEL_CLASSES")))
+            classes.append(" ".join(get_config()["LABEL_CLASSES"]))
 
         if self.field.field.required:
             classes.append("required")
@@ -172,7 +172,7 @@ helpers.AdminField = UnfoldAdminField
 class UnfoldAdminReadonlyField(helpers.AdminReadonlyField):
     def label_tag(self) -> SafeText:
         attrs = {
-            "class": " ".join(get_config("LABEL_CLASSES") + ["mb-2"]),
+            "class": " ".join(get_config()["LABEL_CLASSES"] + ["mb-2"]),
         }
 
         label = self.field["label"]
@@ -282,7 +282,7 @@ class ModelAdminMixin:
                 )
             else:
                 kwargs["widget"] = forms.Select(
-                    attrs={"class": " ".join(get_config("SELECT_CLASSES"))}
+                    attrs={"class": " ".join(get_config()["SELECT_CLASSES"])}
                 )
 
             kwargs["choices"] = db_field.get_choices(
@@ -298,14 +298,14 @@ class ModelAdminMixin:
         if "widget" not in kwargs:
             if db_field.name in self.raw_id_fields:
                 kwargs["widget"] = forms.TextInput(
-                    attrs={"class": " ".join(get_config("INPUT_CLASSES"))} 
+                    attrs={"class": " ".join(get_config()["INPUT_CLASSES"])} 
                 )
             elif (
                 db_field.name not in self.get_autocomplete_fields(request)
                 and db_field.name not in self.radio_fields
             ):
                 kwargs["widget"] = forms.Select(
-                    attrs={"class": " ".join(get_config("SELECT_CLASSES"))}
+                    attrs={"class": " ".join(get_config()["SELECT_CLASSES"])}
                 )
                 kwargs["empty_label"] = _("Select value")
 
@@ -320,7 +320,7 @@ class ModelAdminMixin:
         if "widget" not in kwargs:
             if db_field.name in self.raw_id_fields:
                 kwargs["widget"] = forms.TextInput(
-                    attrs={"class": " ".join(get_config("INPUT_CLASSES"))}
+                    attrs={"class": " ".join(get_config()["INPUT_CLASSES"])}
                 )
 
         form_field = super().formfield_for_manytomany(db_field, request, **kwargs)
@@ -330,7 +330,7 @@ class ModelAdminMixin:
             return None
 
         if isinstance(form_field.widget, SelectMultiple):
-            form_field.widget.attrs["class"] = " ".join(get_config("SELECT_CLASSES"))
+            form_field.widget.attrs["class"] = " ".join(get_config()["SELECT_CLASSES"])
 
         return form_field
 
@@ -339,7 +339,7 @@ class ModelAdminMixin:
     ) -> Optional[Field]:
         if "widget" not in kwargs:
             kwargs["widget"] = forms.NullBooleanSelect(
-                attrs={"class": " ".join(get_config("SELECT_CLASSES"))}
+                attrs={"class": " ".join(get_config()["SELECT_CLASSES"])}
             )
 
         return db_field.formfield(**kwargs)
